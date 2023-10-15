@@ -22,4 +22,6 @@ Run the bot using the following command:
 python bot.py
 ```
 
-It will send you an image when it first detects an intruder. Thereafter, it will continue saving images of the intruder, while you can use the bot to send messages to the intruder. The bot will broadcast your messages to the intruder. You can also use the `/image` command on telegram to get the latest image of the intruder.
+Start the bot from telegram using the command `/start`. Afterwards, it will send you an image when it first detects an intruder. Thereafter, it will continue saving images of the intruder, while you can use the bot to send messages to the intruder. The bot will broadcast your messages to the intruder. You can also use the `/image` command on telegram to get the latest image of the intruder.
+
+You would need to restart the script if you want to start a new session.

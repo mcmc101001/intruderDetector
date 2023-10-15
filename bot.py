@@ -24,6 +24,7 @@ def error(update, context):
 
 
 async def startMonitoring(update, context):
+    await context.bot.send_message(chat_id=CHAT_ID, text="Monitoring started!")
     sendIntruderAlertMutex.acquire()
     await context.bot.send_message(chat_id=CHAT_ID, text="Intruder Alert!")
     await context.bot.send_photo(chat_id=CHAT_ID, photo=open(
