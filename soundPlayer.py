@@ -10,7 +10,7 @@ def durationOfAudioFileFromPath(path):
 
 
 def generateIntruderAlertSound():
-    text = "Intruder Alert!"
+    text = "I can see you.... Don't look under the bed..... Hehehehehehe..... I'm coming for you. 5, 4, 3, 2, 1"
     language = 'en'
 
     myObj = gTTS(text=text, lang=language, slow=False)
