@@ -12,6 +12,7 @@ generateIntruderAlertSound()
 playSoundMutex = Lock()
 playCustomSoundMutex = Lock()
 sendIntruderAlertMutex = Lock()
+initialiseMutex = Lock()
 
 textToPlay = ""
 
@@ -34,8 +35,8 @@ pre_trained_model = cv.CascadeClassifier('haar_face.xml')
 
 
 def intruderDetection():
-    sendIntruderAlertMutex.acquire()
-    playSoundMutex.acquire()
+    # start program when initialise mutex released
+    initialiseMutex.acquire()
     i = 0
     intruderDetected = False
     while True:

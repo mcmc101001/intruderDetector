@@ -2,15 +2,12 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 import os
 import logger
-import asyncio
 
 from dotenv import load_dotenv
 
 from soundPlayer import playCustomSound
 
-from threading import Thread
-
-from face_detect import initThreads, playCustomSoundMutex, sendIntruderAlertMutex
+from face_detect import initThreads, playCustomSoundMutex, sendIntruderAlertMutex, playSoundMutex, initialiseMutex
 
 load_dotenv()
 
@@ -24,6 +21,7 @@ def error(update, context):
 
 
 async def startMonitoring(update, context):
+    initialiseMutex.release()
     await context.bot.send_message(chat_id=CHAT_ID, text="Monitoring started!")
     sendIntruderAlertMutex.acquire()
     await context.bot.send_message(chat_id=CHAT_ID, text="Intruder Alert!")
@@ -47,6 +45,10 @@ async def voice(update, context):
 def main():
 
     app = Application.builder().token(TOKEN).build()
+
+    sendIntruderAlertMutex.acquire()
+    playSoundMutex.acquire()
+    initialiseMutex.acquire()
 
     initThreads()
 
